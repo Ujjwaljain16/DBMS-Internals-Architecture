@@ -1,4 +1,4 @@
-# Study Notes — Architecture of a Database System (Introduction & Life of a Query)
+# Study Notes - Architecture of a Database System (Introduction & Life of a Query)
 
 ---
 
@@ -164,7 +164,7 @@ Properties ensuring reliable transactions:
 
 ---
 
-# 5. Detailed Explanation — The Life of a Query
+# 5. Detailed Explanation - The Life of a Query
 
 To understand DBMS architecture, the paper walks through an example query.
 
@@ -241,7 +241,7 @@ Additional tasks:
 
 ---
 
-## Step 2 — Process Manager assigns computation
+## Step 2 - Process Manager assigns computation
 
 When the DBMS receives the SQL query:
 
@@ -259,7 +259,7 @@ This prevents system overload.
 
 ---
 
-## Step 3 — Query Processor executes the query
+## Step 3 - Query Processor executes the query
 
 The query is processed by the **Relational Query Processor**.
 
@@ -287,7 +287,7 @@ Operators also request data from lower system layers.
 
 ---
 
-## Step 4 — Storage Manager retrieves data
+## Step 4 - Storage Manager retrieves data
 
 The bottom layer of the system is the **Transactional Storage Manager**.
 
@@ -346,7 +346,7 @@ Ensures that:
 
 ---
 
-## Step 5 — Returning query results
+## Step 5 - Returning query results
 
 Once data is retrieved, the system begins **unwinding the stack**.
 
@@ -479,32 +479,8 @@ Examples include tasks that:
 
 ---
 
-# 8. Intuition / Mental Model
 
-Think of a DBMS like a **factory processing data requests**.
-
-```
-Client sends request
-        ↓
-Communication Manager receives it
-        ↓
-Process Manager assigns workers
-        ↓
-Query Processor plans and executes work
-        ↓
-Storage Manager retrieves data
-        ↓
-Results move back up the system
-        ↓
-Client receives results
-```
-
-Each component specializes in a particular task, forming a **layered architecture**.
-
----
-
-
-# 9. Common Confusions
+# 8. Common Confusions
 
 ### Communication Manager vs Process Manager
 
@@ -546,6 +522,7 @@ Storage Manager:
 * retrieves and modifies physical data
 
 ---
+
 ## DBMS Architecture
 
 ```mermaid
@@ -591,6 +568,8 @@ Query --- Shared
 Storage --- Shared
 Proc --- Shared
 ```
+---
+
 ## Life of a Query
 
 ```mermaid
@@ -610,3 +589,4 @@ Storage->>Query: Return records
 Query->>Comm: Result tuples
 Comm->>Client: Send results
 ```
+---
