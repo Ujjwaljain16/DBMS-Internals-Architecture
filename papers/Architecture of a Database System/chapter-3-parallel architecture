@@ -32,6 +32,14 @@ This is important because:
 4. **NUMA**
 
 ---
+# 🔥 Architecture Comparison (Quick View)
+
+Architecture | What is shared | Main bottleneck | Scalability | Used in
+-------------|----------------|----------------|-------------|--------
+Shared Memory | RAM + Disk | Memory contention | Medium | OLTP systems
+Shared Nothing | Nothing | Network | Very High | Big data, warehouses
+Shared Disk | Disk only | Coordination | Medium | Enterprise DBs
+NUMA | RAM (non-uniform) | Memory locality | High | Modern servers
 
 ## 2.2 Execution & Coordination
 
@@ -373,6 +381,26 @@ Examples:
 * modern large shared-memory systems
 
 ---
+# 🔥 Choosing the Right Architecture (Decision Rules)
+
+Use Shared Memory when:
+- system is small to medium
+- low latency required
+- hardware is single machine
+
+Use Shared Nothing when:
+- massive scale required
+- distributed data processing
+- data warehouses / analytics
+
+Use Shared Disk when:
+- easier administration needed
+- failover is important
+- enterprise systems
+
+Use NUMA when:
+- running on high-end multi-CPU servers
+- memory locality optimization matters
 
 # 4.5 DBMS Threads & Multi-processors
 
@@ -464,6 +492,14 @@ Supported by:
 
 * Oracle RAC
 * DB2 zSeries
+
+---
+# 🔥 Real-World Mapping
+
+PostgreSQL → Shared Memory + Process-per-worker model  
+MySQL → Thread-per-worker + Shared Memory  
+BigQuery / Spark → Shared Nothing (distributed systems)  
+Oracle RAC → Shared Disk architecture  
 
 ---
 
@@ -584,6 +620,17 @@ Shared Nothing → many independent brains
 Shared Disk → shared storage, separate brains
 NUMA → shared brain but unequal distances
 ```
+# 🔥 One Master Insight
+
+Every DBMS problem reduces to:
+
+Query execution =
+   computation
+ + data movement
+ + coordination
+
+Different architectures only change:
+→ which of these becomes expensive
 
 ---
 
